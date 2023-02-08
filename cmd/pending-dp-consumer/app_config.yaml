@@ -1,0 +1,21 @@
+env: production
+debug: false
+postgres_dsn: postgres://test:test@localhost:5432/portfolio_balance?sslmode=disable
+postgres_conn_limit: 10
+kafka:
+  user: adminscram
+  password: admin-secret-512
+  brokers:
+    - 127.0.0.1:9093
+  group: data_point_pending_group
+  topic: data_point_pending
+  start_offset: 0
+  min_bytes: 78
+  max_bytes: 2_000_000
+  max_wait: 3s
+pending_kafka_consumer:
+  workers_count: 1
+  bucket_size: 10_000
+  bucket_wait_time: 3s
+  bucket_rps: 10
+  time_adjustment: 15m
